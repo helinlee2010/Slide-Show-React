@@ -1,0 +1,127 @@
+
+body {
+  margin: 0;
+  padding: 0 0 100px 0;
+  font-family: "Roboto",sans-serif;
+  overflow-x: hidden;
+  color: rgba(0,0,0, 0.75);
+}
+
+.App{
+  text-align: center;
+  position: relative;
+}
+
+button{
+  background-color: #f3f3f3;
+  margin-bottom: 20px;
+  margin-right: 60px;
+  padding: 6px;
+  font-size: 15px;
+  color: rgba(0,0,0, 0.75);
+  border-radius: 20px;
+  border-color:paleturquoise;
+}
+
+/* Card */
+.card{
+  border: 3px solid #f3f3f3;
+  box-shadow: 0px 1px 3px rgba(0,0,0, 0.3);
+  transition: all 0.3s linear;
+  cursor: pointer;
+  background-color: #f3f3f3;
+  padding: 10px;
+  max-width: 220px;
+  text-align: left;
+  margin: 0 auto;
+  &:hover{
+    background-color:paleturquoise;
+    border-color: #f3f3f3;
+  }
+  img{
+    max-width: calc(100%);
+    margin: 0 auto;
+    display: block;
+  }
+  .index{
+    display: none;
+  }
+  .features{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li{
+      padding-left: 24px;
+      margin-right: 10px;
+      display: inline-block;
+      span{
+        display: none;
+      }
+    }
+  }
+}
+.cards-slider{
+  position: relative;
+  margin: 0 auto;
+  max-width: 226px;
+  border: 15px solid pink;
+  border-radius: 5%;
+  
+  // 隐藏inactive cards:
+  // overflow:hidden;
+
+  // border for active one
+  &:after{
+    content:""; // 没有这个就不会出现边框 为什么
+    display: block;
+    width:100%;
+    height: 264px;
+    outline: 5px solid rgb(103, 214, 181);
+    // position: absolote;
+    // top: 0;
+    // left: 0;
+  }
+}
+
+
+/** ***/
+.cards-slider-wrapper{
+  display:flex;
+  position: absolute;
+  transition: transform 300ms cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  
+  //尝试 left: -300px; 在inline style里实现
+
+  .card{
+    flex: 1;
+    min-width: 200px;   //we set the max-width to 220px before
+    opacity: 0.7;
+    transform: scale(0.8);
+    //box-shadow: none;
+    background-color: white;
+    transition: opacity 300ms linear, border-color 300ms linear, background-color 300ms linear;
+    .details{
+      opacity:0;
+      transition: opacity 150ms linear;
+    }
+    
+  }
+}  
+
+/* Important!*/
+$i:0;
+@for $i from 0 through 29{
+  .cards-slider.active-slide-#{$i} #card-#{$i}{
+      opacity: 1;
+      transform: scale(1);
+      background-color: #f3f3f3;
+      .details{
+        opacity:1;
+      }
+    }
+}
+
+
+
+
